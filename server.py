@@ -16,13 +16,13 @@ import argparse
 import logging
 import logging.handlers
 
-here = os.path.abspath(os.path.dirname(__file__))
+here = os.path.abspath(os.path.dirname(__file__))#スクリプトのあるディレクトリの絶対パス
 
 #logging
-logfile = here + "/logs/irserver.log"
-logger = logging.getLogger()
-logger.setLevel(logging.DEBUG)
-formatter = logging.Formatter('%(asctime)s %(levelname)s - %(message)s')
+logfile = here + "/logs/irserver.log"#ログファイルを作成
+logger = logging.getLogger()#暗黙のrootロガーを作成
+logger.setLevel(logging.DEBUG)#デバッグレベルで記録
+formatter = logging.Formatter('%(asctime)s %(levelname)s - %(message)s')#ログのフォーマットを指定
 
 rfh = logging.handlers.RotatingFileHandler(
     filename=logfile,
@@ -38,10 +38,10 @@ stdout.setLevel(logging.DEBUG)
 stdout.setFormatter(formatter)
 logger.addHandler(stdout)
 
-template_path = os.path.join(here, "templates")
+template_path = os.path.join(here, "templates")#パスの結合
 static_path = os.path.join(here, "static")
 
-dev2commands = OrderedDict()
+dev2commands = OrderedDict()#挿入された順番が記憶される辞書
 irRequest = None
 histories = []
 cookie_username = "user"
